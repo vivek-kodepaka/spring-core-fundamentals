@@ -1,0 +1,411 @@
+🗓️ 5-MONTH DAY-WISE SPRING & SPRING BOOT PLAN
+
+⏱️ 2 hrs/day | 5 days/week | ~100 days
+
+📘 PHASE 1 – CORE SPRING (Days 1–15)
+
+Goal: Understand IOC & DI deeply (most rejected area)
+
+	Week 1
+
+Day 1
+
+	1.What problem Spring solves
+
+	2.IOC vs Factory vs Singleton
+
+	3.Create GitHub repo: spring-core-fundamentals
+--------------------------------------------------------------------------------------------------
+
+Day 2
+
+	1.Bean creation & container
+
+	2.BeanFactory vs ApplicationContext
+
+	3.Code: XML-based config
+-------------------------------------------------------------------------------------------------
+Day 3
+
+	1.Dependency Injection types
+
+	2.Constructor vs Setter (INTERVIEW FOCUS)
+
+	3.Code examples
+-------------------------------------------------------------------------------------------------
+
+Day 4
+
+	1.Annotations (@Component, @Autowired)
+
+	2.Component scanning
+
+	3.Refactor XML → annotations
+-------------------------------------------------------------------------------------------------
+
+Day 5
+
+	1.Bean lifecycle
+
+	2.@PostConstruct, @PreDestroy
+
+	3.Custom init & destroy methods
+-------------------------------------------------------------------------------------------------
+Week 2
+
+Day 6
+
+	1.Bean scopes
+
+	2.Singleton vs Prototype
+
+	3.Thread-safety discussion
+-------------------------------------------------------------------------------------------------
+
+Day 7
+
+@Configuration vs @Component
+
+@Bean methods
+
+Day 8
+
+Profiles (@Profile)
+
+Environment abstraction
+
+Day 9
+
+Circular dependencies
+
+Why constructor injection avoids them
+
+Day 10
+
+MINI PROJECT COMPLETE
+
+Push to GitHub + README
+
+Notes revision
+
+Buffer
+
+Day 11–15
+
+Revise
+
+Interview Q&A
+
+Refactor code
+
+Mock explanation aloud
+
+🚀 PHASE 2 – SPRING BOOT (Days 16–35)
+
+Goal: Understand Boot internals, not just usage
+
+Week 3
+
+Day 16
+
+Why Spring Boot exists
+
+Boot vs Spring
+
+Day 17
+
+@SpringBootApplication deep dive
+
+Day 18
+
+Auto-configuration mechanism
+
+spring.factories
+
+Day 19
+
+@Conditional annotations
+
+Day 20
+
+External configuration
+
+application.yml
+
+Week 4
+
+Day 21
+
+Starter dependencies
+
+Custom starter (conceptual)
+
+Day 22
+
+Profiles in Boot
+
+Dev vs Prod config
+
+Day 23
+
+Actuator endpoints
+
+Day 24
+
+Logging (Logback)
+
+Day 25
+
+DevTools + hot reload
+
+Week 5
+
+Day 26
+
+Project setup: spring-boot-employee-service
+
+Day 27
+
+REST controllers
+
+Day 28
+
+Exception handling
+
+Day 29
+
+Validation
+
+Day 30
+
+Push project + README
+
+Buffer
+
+Day 31–35
+
+Revise
+
+Boot internals Q&A
+
+Mock interview answers
+
+🌐 PHASE 3 – SPRING MVC (Days 36–50)
+Week 6
+
+Day 36
+
+DispatcherServlet flow (CRITICAL)
+
+Day 37
+
+Controller vs RestController
+
+Day 38
+
+Request lifecycle
+
+Day 39
+
+Filters vs Interceptors
+
+Day 40
+
+Exception handling (@ControllerAdvice)
+
+Week 7
+
+Day 41
+
+Validation deep dive
+
+Day 42
+
+Pagination & sorting
+
+Day 43
+
+Build Order Management API
+
+Day 44
+
+Refactor + tests
+
+Day 45
+
+Push to GitHub
+
+Buffer
+
+Day 46–50
+
+Revise MVC
+
+Diagram drawing practice
+
+🗄️ PHASE 4 – SPRING DATA JPA (Days 51–70)
+Week 8
+
+Day 51
+
+Hibernate & JPA basics
+
+Day 52
+
+Entity lifecycle
+
+Day 53
+
+Fetch types
+
+Day 54
+
+N+1 problem
+
+Day 55
+
+Transactions
+
+Week 9
+
+Day 56
+
+Isolation levels
+
+Day 57
+
+Locking strategies
+
+Day 58
+
+Custom queries
+
+Day 59
+
+Inventory project coding
+
+Day 60
+
+Push to GitHub
+
+Buffer
+
+Day 61–70
+
+Debug real issues
+
+Interview Q&A
+
+🔐 PHASE 5 – SPRING SECURITY (Days 71–85)
+Week 10
+
+Day 71
+
+Security architecture
+
+Day 72
+
+Filter chain
+
+Day 73
+
+Authentication vs Authorization
+
+Day 74
+
+JWT basics
+
+Day 75
+
+Implement JWT
+
+Week 11
+
+Day 76
+
+Role-based access
+
+Day 77
+
+Method-level security
+
+Day 78
+
+Exception handling
+
+Day 79
+
+Secure user service
+
+Day 80
+
+Push to GitHub
+
+Buffer
+
+Day 81–85
+
+Revise Security
+
+Explain flow verbally
+
+☁️ PHASE 6 – MICROSERVICES (Days 86–100)
+Week 12
+
+Day 86
+
+Microservices basics
+
+Day 87
+
+Config Server
+
+Day 88
+
+Service discovery
+
+Day 89
+
+API Gateway
+
+Day 90
+
+Circuit breaker
+
+Week 13
+
+Day 91
+
+Distributed tracing
+
+Day 92
+
+Build mini system
+
+Day 93
+
+Docker basics
+
+Day 94
+
+System design explanation
+
+Day 95
+
+Push all code
+
+Final Days
+
+Day 96–100
+
+Full revision
+
+Mock interviews
+
+Resume update
+
+📘 DAILY 2-HOUR STRUCTURE (Follow Strictly)
+Time	Activity
+30 min	Read concept
+60 min	Code
+30 min	Notes + GitHub
