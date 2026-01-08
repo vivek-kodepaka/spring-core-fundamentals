@@ -6,7 +6,6 @@
 - added Engine interface and PetrolEngine class
 - add Car class
 - <img src="images/img.png" width="500" />
-- ![img.png](images/img.png)
 - @Component:
      - Spring creates beans only for annotated classes
      - Spring will register this class as a bean in the IOC container”
@@ -14,7 +13,7 @@
       - @Configuration -> Without @ComponentScan, Spring container starts but finds zero beans
       - @ComponentScan("com.example.core") -> tell spring to check below modules to check for components
 - App.java -> main file
-  - ![img_1.png](images/img_1.png)
+   <img src="images/img_1.png" width="500" />
   -  // 1️⃣ Start Spring IOC Container
      var context =
      new AnnotationConfigApplicationContext(AppConfig.class);
@@ -30,14 +29,14 @@
      - Resolves dependencies
      - Manages lifecycle
      - This is IOC in action.
-![img_2.png](images/img_2.png)
+<img src="images/img_2.png" width="500" />
 
 
 ## -BeanFactory vs applicationContext
 
 BeanFactory: BeanFactory is a basic container mainly used to demonstrate lazy loading.
- ![img.png](img.png)
-![img_1.png](img_1.png)
+<img src="images/img_6.png" width="500" />
+<img src="images/img_7.png" width="500" />
 
       * XmlBeanFactory loads beans.xml
       * Bean is NOT created immediately
@@ -67,20 +66,20 @@ It does not matter whether beans are defined via:
 
 ## **Can we have Lazy Initialization in ApplicationContext?**
 
-![img_2.png](img_2.png)
+<img src="images/img_8.png" width="500" />
 What happens?
 * Spring context starts
 * engine bean is NOT created
 * Bean is created only when first requested
 
-![img_3.png](img_3.png)
-![img_4.png](img_4.png)
+<img src="images/img_9.png" width="500" />
+<img src="images/img_10.png" width="500" />
 Meaning
 * Car is created at startup
 * Engine is created only when first used
 * 📌 This uses a proxy internally.
 
-![img_5.png](img_5.png)
+<img src="images/img_11.png" width="500" />
 
 
 

@@ -23,7 +23,7 @@
 
 6. Constructor Injection
    - Dependencies are provided through the constructor at the time of object creation 
-   - ![img.png](images/img_3.png)
+   - <img src="images/img_3.png" width="500" /> 
    - Dependencies are mandatory            -> otherwise object wont create without all dependent dependencies
    - Object is created in valid state      -> An object is in a valid state when all required dependencies are available
                                               at the time of creation. Constructor injection enforces this by making
@@ -36,7 +36,7 @@
 
 7.Setter Injection
    - Dependencies are provided using setter methods after object creation.
-   - ![img_1.png](images/img_4.png)
+   - <img src="images/img_4.png" width="500" /> 
    - Dependency is not mandatory
    - Object can exist in incomplete state
    - Does not support immutability
@@ -48,7 +48,7 @@
 
 8. Field Injection (NOT Recommended)
    - Spring injects dependency directly into the field.
-   - ![img_2.png](images/img_5.png)
+   - <img src="images/img_5.png" width="500" /> 
    - Hidden dependencies -> new Car(Engine engine) vs new Car()  -> Engine dependency not visible 
    - Cannot use final
    - Hard to unit test  --> need spring context (springbootTest) to add field dependencies 
