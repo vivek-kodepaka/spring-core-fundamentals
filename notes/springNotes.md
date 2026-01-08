@@ -5,7 +5,7 @@
 -add spring-context (need for IOC and DI)
 - added Engine interface and PetrolEngine class
 - add Car class
-- <img src="images/img.png" width="450" height="450"/>
+- <img src="images/img.png" width="500" />
 - ![img.png](images/img.png)
 - @Component:
      - Spring creates beans only for annotated classes
