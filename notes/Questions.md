@@ -1,0 +1,65 @@
+1. IOC (Inversion of Control)
+   - IOC means the responsibility of object creation and dependency management is 
+        transferred from application code to the Spring container.
+   - creates objects
+   - manages lifecycle
+   - injects dependencies
+   - destroys objects
+
+2. DI (Dependency Injection)
+    - IOC is the principle                 -> what (concept)
+    - DI is the mechanism to implement IOC -> how (implementation)
+    - Dependency Injection is a design pattern used by Spring to implement IOC by injecting required dependencies into a class.
+
+3. @Component
+    - @Component tells Spring to register this class as a bean during component scanning.
+
+4.@ComponentScan
+    - @ComponentScan tells Spring which packages to scan for stereotype annotations like @Component, @Service, @Repository, and @Controller.
+
+5. why constructor Injection best
+   - Constructor injection is preferred because it enforces mandatory dependencies,
+     supports immutability, fails fast at startup, and exposes circular dependencies early.
+
+6. Constructor Injection
+   - Dependencies are provided through the constructor at the time of object creation 
+   - ![img.png](images/img_3.png)
+   - Dependencies are mandatory            -> otherwise object wont create without all dependent dependencies
+   - Object is created in valid state      -> An object is in a valid state when all required dependencies are available
+                                              at the time of creation. Constructor injection enforces this by making
+                                              dependencies mandatory, preventing null or partially initialized objects.
+
+   - Supports immutability (final fields)  -> final allowed  ->state won't change ->safe in multi threaded env
+   - Fails fast if dependency is missing   -> Application fails at startup -> Missing beans detected early
+   - Exposes circular dependencies early  -> Circular dependencies cause startup failure
+   - Easy to unit test                    -> Dependencies passed manually -> No Spring context needed
+
+7.Setter Injection
+   - Dependencies are provided using setter methods after object creation.
+   - ![img_1.png](images/img_4.png)
+   - Dependency is not mandatory
+   - Object can exist in incomplete state
+   - Does not support immutability
+   - Errors may occur at runtime
+   - Circular dependencies may be hidden
+       - When to use
+         - Dependency is optional
+         - Can be changed later
+
+8. Field Injection (NOT Recommended)
+   - Spring injects dependency directly into the field.
+   - ![img_2.png](images/img_5.png)
+   - Hidden dependencies -> new Car(Engine engine) vs new Car()  -> Engine dependency not visible 
+   - Cannot use final
+   - Hard to unit test  --> need spring context (springbootTest) to add field dependencies 
+                            or @Mock + @InjectMocks (which uses relection to add field injection after object creation)
+   - Breaks immutability
+   - Runtime failures possible
+
+9. Fail Fast vs Fail Late (Important)
+    - Fail Fast (Constructor Injection)
+         - Error occurs at application startup
+         - Safer and predictable
+    - Fail Late (Setter / Field Injection)
+         - Error occurs at runtime
+         - Risk of production failures
