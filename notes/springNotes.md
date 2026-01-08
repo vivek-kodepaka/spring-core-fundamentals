@@ -17,5 +17,16 @@
      Car car = context.getBean(Car.class);
      // 3️⃣ Use it
      car.drive();
+- new AnnotationConfigApplicationContext(AppConfig.class);
+  - Spring:
+     - Creates ApplicationContext
+     - Scans package
+     - Creates beans
+     - Resolves dependencies
+     - Manages lifecycle
+     - This is IOC in action.
+![img_2.png](images/img_2.png)
+
+
   
 
