@@ -1,12 +1,6 @@
-🗓️ 5-MONTH DAY-WISE SPRING & SPRING BOOT PLAN
+# Spring Learning Schedule
 
-⏱️ 2 hrs/day | 5 days/week | ~100 days
-
-📘 PHASE 1 – CORE SPRING (Days 1–15)
-
-Goal: Understand IOC & DI deeply (most rejected area)
-
-	Week 1
+Week 1
 
 Day 1
 
