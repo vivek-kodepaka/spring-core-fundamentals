@@ -63,3 +63,22 @@
     - Fail Late (Setter / Field Injection)
          - Error occurs at runtime
          - Risk of production failures
+
+10. What is Spring Container?
+     - Spring Container is the core component of the Spring framework that is 
+          responsible for creating, configuring, managing, and destroying Spring beans.
+     - bean lifecycles
+
+11. Types of Spring Containers
+     - BeanFactory -> basic Spring container that provides core dependency injection features.
+       - Lightweight
+       - Uses lazy initialization (creates beans only when requested)
+       - Minimal features
+       - Mostly used in simple or memory-constrained environments
+       - ApplicationContext
+       
+     - ApplicationContext -> Spring container built on top of BeanFactory.
+       - Uses eager initialization (creates beans at startup)
+       - Supports enterprise features
+       - Most commonly used container
+       - Used by Spring Boot internally

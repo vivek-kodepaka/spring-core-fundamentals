@@ -32,6 +32,56 @@
 ![img_2.png](images/img_2.png)
 
 
+## -BeanFactory vs applicationContext
+
+BeanFactory: BeanFactory is a basic container mainly used to demonstrate lazy loading.
+ ![img.png](img.png)
+![img_1.png](img_1.png)
+
+      * XmlBeanFactory loads beans.xml
+      * Bean is NOT created immediately
+      * Bean is created only when getBean() is called
+      * This is lazy initialization
+
+**Important Interview Notes**
+
+* XmlBeanFactory is deprecated (Spring 3.1+)*
+* Still asked for conceptual understanding 
+* Replaced by ApplicationContext
+
+### ApplicationContext:
+- ApplicationContext is an advanced Spring container built on top of BeanFactory.
+Key Characteristics
+
+  * Uses eager initialization (creates beans at startup)
+  * Supports enterprise features
+  * Most commonly used container
+  * Used by Spring Boot internally
+
+ApplicationContext = eager initialization by default
+It does not matter whether beans are defined via:
+     * @Component
+      * @Bean in @Configuration
+      * XML
+
+## **Can we have Lazy Initialization in ApplicationContext?**
+
+![img_2.png](img_2.png)
+What happens?
+* Spring context starts
+* engine bean is NOT created
+* Bean is created only when first requested
+
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+Meaning
+* Car is created at startup
+* Engine is created only when first used
+* 📌 This uses a proxy internally.
+
+![img_5.png](img_5.png)
+
+
 
 
 
