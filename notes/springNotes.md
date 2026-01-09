@@ -552,6 +552,17 @@ If condition fails → bean is not created.
       }`
 
 
+## Bean Definition vs Bean Instance (Small but Useful)
+Add a short note:
+- A bean definition is metadata about how a bean should be created.
+- A bean instance is the actual object created from that definition.
+
+## Bean Definition vs Bean Instance (Small but Useful)
+Add a short note:
+- A bean definition is metadata about how a bean should be created.
+- A bean instance is the actual object created from that definition.
+
+
 
 
   
