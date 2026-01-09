@@ -459,6 +459,99 @@ Method calls between @Bean methods are intercepted
   @Bean is preferred for third-party or externally constructed objects.
   Using @Bean inside @Component may lead to multiple instances.
 
+# DAY 6 – SPRING PROFILES (@Profile)
+
+Dev / Test / Prod configuration
+
+1. jvm arg -> -Dspring.profiles.active=dev
+2. application.properties -> spring.profiles.active=dev
+3.plain spring -> context.getEnvironment().setActiveProfiles("dev")
+4. @Configuration
+   @Profile("dev") --> all beans inside configuration
+5. @Profile("dev, qa")
+   @Component     --> only this component for both dev and qa
+
+- Spring Profiles allow beans and configurations to be loaded conditionally
+  based on the active environment. Only beans matching the active profile
+  are created during context startup.
+
+
+# DAY 7 – CONDITIONAL BEANS
+
+- present in spring boot auto configure -> @Conditional, @ConditionalOnProperty, @ConditionalOnClass
+- spring core -> only @Conditional
+
+## What Are Conditional Beans?
+- Conditional beans are beans that are created only if a specific condition is satisfied.
+- Spring checks conditions:
+  - at startup
+  - before bean creation
+If condition fails → bean is not created.
+
+## 2️⃣ Why Conditional Beans Are Needed (Real World)
+- Without conditional beans:
+  - Kafka config loads even if Kafka is not used ❌
+  - DB config loads even if DB is disabled ❌
+  - Auto-config becomes impossible ❌
+  
+- With conditional beans:
+  - Lightweight startup
+  - Feature toggles
+  - Environment-based behavior
+
+📌 Spring Boot auto-configuration is built on conditional beans.
+
+1. @ConditionalOnProperty
+    - `@Component
+      @ConditionalOnProperty(
+      name = "feature.cache.enabled",
+      havingValue = "true",
+      matchIfMissing = false
+      )
+      public class CacheService {
+      }`
+
+2. @ConditionalOnClass
+   - `@Configuration
+     @ConditionalOnClass(name = "org.apache.kafka.KafkaProducer")
+     public class KafkaConfig {
+       @Bean
+       public KafkaService kafkaService() {
+       return new KafkaService();
+       }
+       }`
+   - ✔ Kafka jar present → bean created
+     ❌ Kafka jar missing → bean skipped
+📌 This is how Spring Boot avoids ClassNotFoundException.
+
+3. @ConditionalOnMissingBean
+    - `@Bean
+      @ConditionalOnMissingBean(DataSource.class)
+      public DataSource defaultDataSource() {
+      return new DefaultDataSource();
+      }`
+    - ✔ User defines own DataSource → this bean skipped
+    - ✔ User does nothing → default bean used
+    - 📌 This is core to Spring Boot starters.
+
+4. @Conditional (LOW-LEVEL)
+    - `public class LinuxCondition implements Condition {
+       @Override
+       public boolean matches(
+       ConditionContext context,
+       AnnotatedTypeMetadata metadata
+       ) {
+       String os = System.getProperty("os.name");
+       return os.contains("Linux");
+       }
+       }`
+    - `@Bean
+      @Conditional(LinuxCondition.class)
+      public OsService linuxService() {
+      return new LinuxService();
+      }`
+
+
 
 
   
