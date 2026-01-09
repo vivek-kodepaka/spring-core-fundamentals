@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy
-public class PetrolEngine implements Engine{
+public class CNGEngine implements Engine{
 
     public void start(){
-        System.out.println("start petrol engine");
+        System.out.println("start cng engine");
     }
 
     @PostConstruct
     public void init(){
-        System.out.println("post construct petrolEngine");
+        System.out.println("post construct cngEngine");
     }
 
     @PreDestroy
     public void destroy(){
-        System.out.println("pre destroy petrolEngine");
+        System.out.println("pre destroy cngEngine");
     }
 }

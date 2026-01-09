@@ -2,19 +2,23 @@ package com.kode.core;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy
+//@Lazy
 public class Car {
-    private Engine engine;
-    public Car(Engine engine){
-        this.engine=engine;//constructor engine no autowired requires
-    }
+    @Autowired
+    private Engine CNGEngine;
+    /*public Car(Engine engine){
+        this.petrolEngine=engine;//constructor engine no autowired requires
+    }*/
+
+
 
     public void drive(){
-        engine.start();
+        CNGEngine.start();
     }
 
     @PostConstruct

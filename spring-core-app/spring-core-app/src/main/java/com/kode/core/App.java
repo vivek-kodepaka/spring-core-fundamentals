@@ -7,8 +7,9 @@ public class App {
         var context = new AnnotationConfigApplicationContext(AppConfig.class);
        /* CarWithfieldInjection car = context.getBean(CarWithfieldInjection.class);
         car.drive();*/
-        Car car = context.getBean(Car.class);
-        car.drive();
+        /*Car car = context.getBean(Car.class);
+        car.drive();*/
+        //DataSource dataSource = context.getBean()
         context.close();
     }
 }

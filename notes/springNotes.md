@@ -305,5 +305,161 @@ above code doesnt work requestBean is request scope cant be used in singleton
 * Spring injects a proxy, not the real bean.
 
 
+# DAY 4 – MULTIPLE BEANS INJECTION
+
+The Problem: Multiple Beans of Same Type
+You have one interface and multiple implementations.
+
+    `public interface Engine {
+    void start();
+    }`
+
+    `@Component
+    public class PetrolEngine implements Engine {
+    public void start() {
+    System.out.println("Petrol engine");
+    }
+    }`
+
+    `@Component
+    public class DieselEngine implements Engine {
+    public void start() {
+    System.out.println("Diesel engine");
+    }
+    }`
+
+    `@Component
+    public class Car {
+    
+        private final Engine engine;
+    
+        public Car(Engine engine) {
+            this.engine = engine;
+        }
+    }`
+
+NoUniqueBeanDefinitionException:
+expected single matching bean but found 2
+
+solution:
+- @Primary - defines the default bean among multiple candidates.
+- @Qualifier 
+  * You want different implementations in different places
+  * Explicit control is required
+  * @Qualifier("dieselEngine")
+  * if both presents Qualifier takes precedence
+
+    `@Component
+    public class Car {
+    @Autowired
+    private Engine petrolEngine; // byName
+    }`
+  * Exception 
+    * usually byType it matches 
+    * But in field injection -> byname also it matches but not recommended
+
+
+# DAY 5 – (@Configuration vs @Component) and (@Bean vs @Component)
+
+## @Configuration vs @Component
+
+1️⃣ First: What Problem Are These Solving?
+
+Spring needs to know:
+  * which classes are beans
+  * How beans are created
+  * Whether Spring should manage method calls between beans
+
+There are two ways to register beans:
+   1. Component scanning
+   2. Java configuration (@Bean)
+
+@Component     -->  marks a class as a Spring-managed bean.
+@Configuration -->marks a class that defines bean creation methods.
+
+@Configuration uses CGLIB proxying
+This ensures:
+Only ONE bean instance is created
+Method calls between @Bean methods are intercepted
+
+
+    `@Component
+    public class AppConfig {
+        @Bean
+        public Engine engine() {
+            return new Engine();
+        }
+        @Bean
+        public Car car() {
+            return new Car(engine());
+        }
+    }`
+
+ 1. creating beans inside @component using @Bean
+ 2. 2 engine objs are created  --> No interception btw method calls
+
+    `@Component
+    public class AppConfig {
+    @Bean
+    public Engine engine() {
+    return new Engine();
+    }
+    @Bean
+    public Car car() {
+    return new Car(engine());
+    }
+    }`
+
+- only one engine obj is created 
+- @configuration -> “@Configuration ensures singleton behavior for 
+                      @Bean methods using proxying, whereas @Component does not.”
+
+# @Bean vs @Component
+
+ - @Component  -> you own class
+ - @Bean       -> You do NOT own the class
+                  Third-party libraries
+                  Need custom construction logic
+
+    - Need custom construction logic
+      - `@Component
+        public class DataSource {
+        public DataSource(String url, String user, String pwd) { }
+        }`
+      - fails UnsatisfiedDependencyException: No qualifying bean of type 'java.lang.String' available
+      - `@Component
+         public class DataSource {
+         public DataSource(
+         @Value("${db.url}") String url,
+         @Value("${db.user}") String user,
+         @Value("${db.pwd}") String pwd
+         ) {
+         }
+         }`
+      - works but Still less flexible,   ⚠️ Harder to test, ⚠️ Tight coupling to configuration
+      - BEST WAY
+      - `@Configuration
+         public class DbConfig {
+         @Bean
+         public DataSource dataSource() {
+         return new DataSource(
+         "jdbc:mysql://localhost:3306/app",
+         "user",
+         "pwd"
+         );
+         }
+         }`
+
+
+
+
+- @Component is used for business classes discovered via component scanning.
+  @Configuration is used for defining @Bean methods and ensures singleton
+  behavior through proxying.
+  @Bean is preferred for third-party or externally constructed objects.
+  Using @Bean inside @Component may lead to multiple instances.
+
+
+
   
 
