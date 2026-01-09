@@ -82,6 +82,19 @@ Meaning
 <img src="images/img_11.png" width="500" />
 
 
+## Spring Bean Lifecycle:
+1. Instantiation
+2. Dependency Injection
+3. Initialization (@PostConstruct)
+4. Ready for use
+5. Destruction (@PreDestroy)
+
+@PostConstruct runs after dependencies are injected.
+@PreDestroy runs before bean destruction.
+Prototype beans are not fully managed during destruction.
+
+
+
 
 
 
