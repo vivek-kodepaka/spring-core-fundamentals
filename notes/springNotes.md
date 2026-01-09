@@ -93,12 +93,119 @@ Meaning
 @PreDestroy runs before bean destruction.
 Prototype beans are not fully managed during destruction.
 
+### Step 1: Bean Instantiation
+- Spring creates the object
+
+Uses:
+- Constructor
+- Factory method
+- Reflection
+
+📌 At this point:
+- Object exists
+- Dependencies NOT injected yet
+
+
+### Step 2: Dependency Injection
+
+- Spring injects dependencies
+- Constructor / Setter / Field
+
+📌 After this:
+* Bean is in a valid state
+* Dependencies are available
+
+
+### Step 3: Initialization (IMPORTANT)
+- This is where custom initialization logic runs.
+
+There are 3 ways:
+option 1: use this approach
+    `@Component
+    public class Engine {
+    
+        @PostConstruct
+        public void init() {
+            System.out.println("Engine initialized");
+        }
+    }`
+
+#### Key points:
+* Runs after dependency injection
+* Runs once per bean
+* Preferred over XML methods
+* @PostConstruct runs after dependencies are injected.
+
+#### option 2:
+
+    `@Component
+    public class Engine implements InitializingBean {
+    
+        @Override
+        public void afterPropertiesSet() {
+            System.out.println("Engine initialized");
+        }
+    }`
+
+❌ Tightly couples code to Spring
+⚠️ Avoid in business logic
+
+#### option 3:
+@Bean(initMethod=...) (CONFIG LEVEL)
+
+    `@Bean(initMethod = "init")
+    public Engine engine() {
+    return new Engine();
+    }`
+
+- Useful for third-party classes
+
+Bean Is Ready for Use ✅
+At this stage:
+* Bean is fully initialized
+* Available via getBean()
+* Used by application
+
+
+## Bean Destruction Phase (VERY IMPORTANT)
+
+Occurs when:
+* Application shuts down
+* Context is closed
+
+#### @PreDestroy (MOST USED)
+
+        `@Component
+        public class Engine {
+        
+            @PreDestroy
+            public void cleanup() {
+                System.out.println("Engine destroyed");
+            }
+        }`
+
+#### Used for:
+* Closing DB connections
+* Releasing resources
+* Flushing buffers
+
+📌 Interview line:
+“@PreDestroy is used for cleanup before bean removal.”
 
 
 
+DisposableBean Interface (LESS USED)
+`@Component
+public class Engine implements DisposableBean {
+
+    @Override
+    public void destroy() {
+        System.out.println("Cleanup");
+    }
+}`
 
 
-
-
+❌ Spring-coupled
+⚠️ Avoid when possible
   
 

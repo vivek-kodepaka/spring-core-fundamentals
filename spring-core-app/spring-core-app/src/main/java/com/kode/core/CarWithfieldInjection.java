@@ -7,11 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Lazy
-public class Car {
+public class CarWithfieldInjection {
     private Engine engine;
-    public Car(Engine engine){
-        this.engine=engine;//constructor engine no autowired requires
-    }
 
     public void drive(){
         engine.start();

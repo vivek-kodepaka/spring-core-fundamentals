@@ -82,3 +82,20 @@
        - Supports enterprise features
        - Most commonly used container
        - Used by Spring Boot internally
+
+12. ## Spring Bean Lifecycle:
+    * Instantiation
+    * Dependency Injection
+    * Initialization (@PostConstruct)
+    * Ready for use
+    * Destruction (@PreDestroy) --> prototype not fully managed during destruction
+
+13. @preDestory for prototype beans
+    - Prototype beans are created and initialized by Spring, but their
+      destruction is not managed by the container. @PreDestroy is not
+      called for prototype beans; cleanup must be handled by the client.
+    - @PostConstruct is called during bean initialization.
+      @PreDestroy is called only when the Spring ApplicationContext is closed.
+      In plain Spring applications, context.close() must be called explicitly;
+      otherwise, @PreDestroy will not execute.
+
