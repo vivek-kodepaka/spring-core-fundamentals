@@ -207,5 +207,103 @@ public class Engine implements DisposableBean {
 
 ❌ Spring-coupled
 ⚠️ Avoid when possible
+
+
+# DAY 3 – SPRING BEAN SCOPES (VERY IMPORTANT)
+<img src="images/img_2.png" width="500" />
+
+What Is a Bean Scope?
+    Bean scope defines how many instances of a bean Spring creates and how long those instances live.
+
+* How many objects?
+* When created?
+* When destroyed?
+
+
+
+### Core scopes (most important):
+* singleton -> default -> One bean instance per Spring container
+* prototype -> A new bean instance is created every time it is requested
+  * `@Component
+    @Scope("prototype")
+    class Engine {
+    }`
+  * does not handles @PreDestroy
+
+### Web scopes (later / optional):
+* request
+* session
+* application
+
+#### Is singleton = one instance per JVM?
+    ❌ No
+    ✅ One instance per Spring container
+
+#### ❓ When to use prototype?
+    ✅ Short-lived objects
+    ✅ Non-shared state
+    ❌ Heavy resources
+
+Bean Scope defines the lifecycle and number of bean instances.
+Singleton is the default scope with one instance per container.
+Prototype creates a new instance per request, and Spring does not
+manage its destruction phase.
+
+
+## web scope
+Web scopes are available only in Spring web applications (mvc or boot).
+
+#### * Request scope creates a bean per HTTP request.
+
+  * @Scope(value = WebApplicationContext.SCOPE_REQUEST)
+  * New bean for every HTTP request
+  * Destroyed after request completes
+    * uses:
+      *  Request-specific data
+      *  Request logging
+      *  Correlation IDs
+      
+#### * Session scope creates a bean per user session.
+
+  * @Scope(value = WebApplicationContext.SCOPE_SESSION)
+  * Same bean reused across multiple requests
+  * New bean created when new session starts
+  * Destroyed when session expires
+    * uses
+      * User login data
+      * Shopping cart
+      * Shopping cart
+    
+#### * Application scope creates a single bean for the entire web app.    
+  * @Scope(value = WebApplicationContext.SCOPE_APPLICATION)
+  * Single instance shared by all users
+  * Lives until application shutdown
+    * Use Cases
+      * Global caches
+      * Shared configuration
+      * Application-wide counters
+
+#### Scoped proxies are required when injecting web-scoped beans into singleton beans.
+`@Component
+public class OrderService {
+
+    @Autowired
+    private RequestBean requestBean; // ❌ problem
+}`
+
+above code doesnt work requestBean is request scope cant be used in singleton
+* Singleton created at startup
+* RequestBean exists only during request
+
+    `@Component
+    @Scope(
+    value = WebApplicationContext.SCOPE_REQUEST,
+    proxyMode = ScopedProxyMode.TARGET_CLASS
+    )
+    public class RequestBean {
+    }`
+* Spring injects a proxy, not the real bean.
+
+
   
 
